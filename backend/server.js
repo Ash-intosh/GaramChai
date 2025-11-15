@@ -12,11 +12,11 @@ const TEAMS_WEBHOOK_URL = 'https://iitgoffice.webhook.office.com/webhookb2/e2e4a
 
 // --- This is our "database" for this quick app ---
 let payers = [
-    "Pradeep and Rohan Dayal",
+    "Pradeep and Rohan",
     "Tapish and Shashank",
     "Vasu and Naman",
-    "Abhilash And saruav",
-    "Sarthak and Devansh",
+    "Abhilash And Devansh",
+    "Sarthak and Saurav",
     "Ashwin and Rohit",
 ];
 
@@ -82,7 +82,13 @@ app.post('/api/next', (req, res) => {
     res.json(payers);
 });
 
-app.listen(PORT, () => {
+// For local development
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
     console.log(`Chaii server running on http://localhost:${PORT}`);
     console.log("Current Payer List:", payers);
-});
+  });
+}
+
+// Export for Vercel
+module.exports = app;
